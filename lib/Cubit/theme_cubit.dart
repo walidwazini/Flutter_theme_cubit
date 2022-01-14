@@ -12,5 +12,7 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   void toggleTheme(){
     _isDark = !isDark;
+    print(_isDark);
+    emit(TukarTheme());
   }
 }

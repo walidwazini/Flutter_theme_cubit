@@ -2,7 +2,6 @@ import './Routes/AppRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_cubit_theme/Cubit/theme_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import './Screens/HomeScreen.dart';
 
 void main() => runApp(Core());
 
@@ -31,11 +30,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeCubit themeCubit = BlocProvider.of<ThemeCubit>(context, listen: true);
+    bool isDark = themeCubit.isDark;
+
     return MaterialApp(
       title: 'My App',
-      theme: ThemeData.dark(),
+      theme: isDark ? ThemeData.light() : ThemeData.dark(),
       initialRoute: 'home',
       onGenerateRoute: router.generateRoute,
     );
   }
 }
+
