@@ -1,3 +1,5 @@
+import 'package:bloc_cubit_theme/Cubit/counter_cubit.dart';
+
 import './Routes/AppRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_cubit_theme/Cubit/theme_cubit.dart';
@@ -10,15 +12,11 @@ class Core extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return BlocProvider<CounterCubit>(
+      create: (context) => CounterCubit(),
       child: MyApp(
         router: AppRouter(),
       ),
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeCubit(),
-        )
-      ],
     );
   }
 }
@@ -30,15 +28,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeCubit themeCubit = BlocProvider.of<ThemeCubit>(context, listen: true);
-    bool isDark = themeCubit.isDark;
+    // ThemeCubit themeCubit = BlocProvider.of<ThemeCubit>(context, listen: true);
+    // bool isDark = themeCubit.isDark;
 
     return MaterialApp(
       title: 'My App',
-      theme: isDark ? ThemeData.light() : ThemeData.dark(),
+      theme: ThemeData.dark(),
       initialRoute: 'home',
       onGenerateRoute: router.generateRoute,
     );
   }
 }
-
