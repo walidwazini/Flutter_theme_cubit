@@ -18,9 +18,9 @@ class HomeScreen extends StatelessWidget {
           // TODO: implement listener
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Theme Changed'),
-              backgroundColor: Colors.indigo,
-              duration: Duration(milliseconds: 50),
+              content: isDark ? Text('Dark Theme') : Text('Light Theme'),
+              backgroundColor: isDark ?  Colors.lightBlueAccent : Colors.indigo,
+              duration: Duration(milliseconds: 300),
             ),
           );
         },
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  child: Text('Here'),
+                  child: isDark? Text('To Dark') : Text('To Light'),
                   onPressed: () {
                     themeCubit.toggleTheme();
                   },
